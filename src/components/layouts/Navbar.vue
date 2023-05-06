@@ -1,18 +1,28 @@
 <template>
   <div class="nav-container">
     <div class="nav-panel">
+      <router-link tag="div" to="/" class="common-inline-block ii">
+        <img
+          src="../../assets/new-logo.png"
+          alt="neatio logo"
+          class="nav-logo common-inline-block"
+        />
+      </router-link>
       <div class="common-inline-block ic" style="">
-
-        <div class="connBtn" v-show="address == null">
-          <button id="connectButton" @click="switchToNeatio">
-            <div class="conColor2">{{ "Wallet not found" }}</div>
-          </button>
-        </div>
+        <router-link
+          to="/"
+          id="home"
+          :class="{ 'nav-active': $route.path === '/' }"
+          class="pgy"
+          >{{ $t("Stake") }}</router-link
+        > 
       </div>
+      <button id="connectButton" @click=switchToNeatio class="netBtn"> <div class="conColor2" >{{address}}</div> </button>
+
     </div>
+    
   </div>
 </template>
-
 <script>
 export default {
   name: "NavPanel",
@@ -252,6 +262,7 @@ export default {
       }
       .nav-logo {
         width: 48px;
+        height: auto;
       }
       .vg {
         position: relative;
