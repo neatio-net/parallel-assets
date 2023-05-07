@@ -12,8 +12,8 @@ export default {
 
 <style>
 @font-face {
-  font-family: "Pirulen";
-  src: local("Pirulen"),
+  font-family: "Anita";
+  src: local("Anita"),
    url(./fonts/pirulen.ttf) format("truetype");
 
 } 
@@ -26,9 +26,9 @@ export default {
 } 
 
 @font-face {
-  font-family: "Computer";
-  src: local("Computer"),
-   url(./fonts/cmunbbx.ttf) format("truetype");
+  font-family: "Anita";
+  src: local("Anita"),
+   url(./fonts/anita.ttf) format("truetype");
 
 } 
 #app {
@@ -36,7 +36,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #00ffff;
-  font-family: Pirulen, Helvetica;
+  font-family: Anita, Helvetica;
   
 }
 
@@ -53,7 +53,7 @@ export default {
 .main {
   background-image:  url('assets/hero-bg.png');
   background-blend-mode: multiply;
-  background-color: #000;
+  /* background-color: #000; */
   background-size: cover;
 
 
@@ -78,7 +78,6 @@ text-align: left;
 box-sizing: 1px;
 border: none;
 border: 1px solid #00ffff;
-
 box-shadow: 0 0 40px #00bfff6e;
 }
 
@@ -128,7 +127,7 @@ box-shadow: 0 0 40px #00bfff6e;
 .information1{
   text-align: center;
   min-height: 10vh;
-  font-family: Pirulen;
+  font-family: Anita;
   color: #fff;
   font-size: 18px;
 }
@@ -137,12 +136,12 @@ box-shadow: 0 0 40px #00bfff6e;
 .el-button {
   border-radius: 10px !important;
   font-weight: bold !important;
-  font-family: Pirulen, Helvetica !important;
+  font-family: Anita, Helvetica !important;
 }
 .el-message-box {
   border-radius: 10px !important;
   background-color: #000 !important;
-  font-family: Pirulen, Arial, Helvetica, sans-serif !important;
+  font-family: Anita, Arial, Helvetica, sans-serif !important;
 }
 
 .el-message-box__content {

@@ -3,9 +3,9 @@
     <div class="nav-panel">
       <router-link tag="div" to="/" class="common-inline-block ii">
         <img
-          src="../../assets/new-logo.png"
+          src="../../assets/logo.png"
           alt="neatio logo"
-          class="nav-logo common-inline-block"
+          class="nav-logo logo-neatio common-inline-block"
         />
       </router-link>
       <div class="common-inline-block ic" style="">
@@ -14,7 +14,7 @@
           id="home"
           :class="{ 'nav-active': $route.path === '/' }"
           class="pgy"
-          >{{ $t("Stake") }}</router-link
+          >{{ $t("NeatBridge") }}</router-link
         > 
       </div>
       <button id="connectButton" @click=switchToNeatio class="netBtn"> <div class="conColor2" >{{address}}</div> </button>
@@ -23,7 +23,11 @@
     
   </div>
 </template>
+
 <script>
+import axios from "axios";
+import MetaMaskOnboarding from '@metamask/onboarding';
+
 export default {
   name: "NavPanel",
   data() {
@@ -31,13 +35,10 @@ export default {
       curNav: "Home",
       searchContent: "",
       otherSearch: "",
-      currentChainId: "",
-      chainId: "0x203",
-      testChainId: "0x20d",
-      address: null,
-      shortAddress: "null",
-      isTestNetwork: true,
-      walletNF: null,
+      currentChainId: '',
+      chainId: '0x203',
+      testChainId: '0x20d',
+      address: '',
     };
   },
   created() {
@@ -45,21 +46,11 @@ export default {
   },
   mounted() {
     this.initialize();
-    this.checkWallet();
   },
   methods: {
     hh() {
       console.log(this);
     },
-
-    checkWallet() {
-      if (this.walletNF == null) {
-        console.log("not found");
-      } else {
-        console.log("wallet found");
-      }
-    },
-
     strTrim(str) {
       str = str + "";
       return str.replace(/(^\s*)|(\s*$)/g, "");
@@ -69,122 +60,128 @@ export default {
     },
 
     getLocaction() {
-      this.isTestNetwork =
-        window.location.hostname.substr(0, 4) === "test" ||
-        window.location.hostname.substr(0, 4) === "loca";
+      this.isTestNetwork = window.location.hostname.substr(0, 4) === "test" || window.location.hostname.substr(0, 4) === "loca";
     },
 
-    async initialize() {
-      this.currentChainId = await ethereum.request({ method: "eth_chainId" });
-      ethereum.on("chainChanged", (_chainId) => {
-        this.connectAccount(_chainId);
+    async initialize () {
+      this.currentChainId = await ethereum.request({ method: 'eth_chainId' });
+
+      ethereum.on('chainChanged', (_chainId) => {
+        this.connectAccount(_chainId)
       });
 
-      ethereum.on("accountsChanged", (_accounts) => {
-        this.requestAccount();
+      ethereum.on('accountsChanged', (_accounts) => {
+        this.requestAccount()
       });
 
       this.requestAccount();
     },
-
-    async requestAccount() {
-      this.currentChainId = await ethereum.request({ method: "eth_chainId" });
+    async requestAccount () {
+      this.currentChainId = await ethereum.request({ method: 'eth_chainId' });
       try {
         if (this.currentChainId !== this.chainId) {
           this.connectAccount();
         } else {
-          this.address = `Neatio Network`;
-          this.shortAddress = `${accounts[0].substr(
-            0,
-            6
-          )}...${accounts[0].slice(-4)}`;
+          
+          this.address = `☉ Neatio`
         }
+
       } catch (e) {
-        console.log("request accounts error:");
+        console.log('request accounts error:', e);
       }
     },
-
-    async connectAccount() {
+    async connectAccount () {
       try {
         if (this.currentChainId !== this.chainId) {
-          this.address = this.$t("wrongNetwork");
-        } else {
-          const accounts = await ethereum.request({ method: "eth_accounts" });
-          this.shortAddress = `${accounts[0].substr(
-            0,
-            6
-          )}...${accounts[0].slice(-4)}`;
+          this.address = this.$t('wrongNetwork');
+        }else {
+          const accounts = await ethereum.request({ method: 'eth_accounts' });
+          this.address = `${accounts[0].substr(0, 6)}...${accounts[0].slice(-4)}`;
         }
       } catch (e) {
-        console.log("request accounts error:", e);
-        this.address = this.$t("Wallet not found");
+        console.log('request accounts error:', e);
       }
     },
+        async switchToNeatio () {
+          let chainIds = '0x203';
+          let rpc = 'https://rpc.neatio.net';
+          let browser = 'https://scan.neatio.net';
+          let chainName = 'Neatio Mainnet';
 
-    async switchToNeatio() {
-      let chainIds = "0x203";
-      let rpc = "https://rpc.neatio.net";
-      let browser = "https://scan.neatio.net";
-      let chainName = "Neatio Network";
-
-      try {
-        this.currentChainId = await ethereum.request({ method: "eth_chainId" });
-        if (this.currentChainId === chainIds) {
-          window.alert("Neatio Network has been added to Metamask.");
-        }
-
-        await ethereum.request({
-          method: "wallet_switchEthereumChain",
-          params: [{ chainId: chainIds }],
-        });
-      } catch (e) {
-        if (e.code === 4902) {
           try {
-            await ethereum.request({
-              method: "wallet_addEthereumChain",
-              params: [
-                {
-                  chainId: chainIds,
-                  chainName: chainName,
-                  nativeCurrency: {
-                    name: "NEAT",
-                    symbol: "NEAT",
-                    decimals: 18,
-                  },
-                  rpcUrls: [rpc],
-                  blockExplorerUrls: [browser],
-                },
-              ],
-            });
+            this.currentChainId = await ethereum.request({ method: 'eth_chainId' });
+            if (this.currentChainId === chainIds) {
+              window.alert("Neatio Network has been added to Metamask.")
+            }
 
-            this.currentChainId = await ethereum.request({
-              method: "eth_chainId",
-            });
+            await ethereum.request({
+              method: 'wallet_switchEthereumChain',
+              params: [{ chainId: chainIds}]
+            })
+
           } catch (e) {
-            console.log("add network error", e);
+            if (e.code === 4902) {
+              try {
+                await ethereum.request({
+                  method: 'wallet_addEthereumChain',
+                  params: [{
+                    chainId: chainIds,
+                    chainName: chainName,
+                    nativeCurrency: {
+                      name: "NEAT",
+                      symbol: "NEAT",
+                      decimals: 18
+                    },
+                    rpcUrls: [rpc],
+                    blockExplorerUrls: [browser]
+                  }]
+                })
+
+                this.currentChainId = await ethereum.request({ method: 'eth_chainId' });
+              } catch (e) {
+                console.log('add network error', e)
+              }
+            }
           }
-        }
-      }
-    },
+        },
   },
 };
 </script>
 
 <style lang="scss">
+
+
+
+
 .nav-container {
   box-shadow: 0px 4px 8px 0px rgba(230, 230, 230, 0.6);
-  background-color: #001127;
+  background-color: #000000;
   height: auto;
+  margin: 0 auto;
+
+  @media only screen and (max-width: 560px) {
   .nav-panel {
-    text-align: center;
+    max-width: 320px;
+  }
 
+}
+
+
+  .nav-panel {
+    text-align: left;
+    box-sizing: border-box;
+    width: 1200px;
     margin: 0 auto;
-
+    .logo-neatio {
+      width: 48px;
+      height: auto;
+      /*margin-top: 20px*/
+    }
     .ii {
       vertical-align: middle;
     }
     .ic {
-      margin-left: 10px;
+      
       width: auto;
       & a {
         margin-right: 15px;
@@ -194,7 +191,7 @@ export default {
 
         &:hover {
           color: #00ffff;
-          transition: all 0.3s ease-in-out;
+          transition: all .3s ease-in-out;
         }
         span {
           vertical-align: middle;
@@ -212,10 +209,10 @@ export default {
           font-weight: bold;
           margin-left: 5px;
           vertical-align: middle;
-          transition: all 0.3s;
+          transition: all .3s;
         }
 
-        &:hover {
+        &:hover{
           .m-title {
             color: #00ffff;
           }
@@ -236,11 +233,11 @@ export default {
           padding: 0;
           height: 0;
           overflow: hidden;
-
+          /*width: 150px;*/
           background: #ffffff;
-          box-shadow: 0 0 8px 0 rgb(230, 230, 230);
+          box-shadow:0 0 8px 0 rgb(230,230,230);
           z-index: 100;
-          transition: all 0.5s;
+          transition: all .5s;
           .menu-item {
             height: 25px;
             line-height: 25px;
@@ -260,10 +257,8 @@ export default {
           }
         }
       }
-      .nav-logo {
-        width: 48px;
-        height: auto;
-      }
+
+
       .vg {
         position: relative;
         top: -2px;
@@ -274,7 +269,7 @@ export default {
         }
         .chain-dropdown {
           position: absolute;
-          width: 110px;
+
           top: 45px;
           box-shadow: 0px 6px 10px 0px #ccc;
           background-color: #000;
@@ -306,6 +301,10 @@ export default {
       }
       .nav-active {
         color: #00ffff;
+        font-family: "Anita", Helvetica, Arial;
+        font-size: 18px;
+
+
       }
       .triangle-active {
         border-color: #00ffff transparent transparent !important;
@@ -317,13 +316,11 @@ export default {
       border-bottom: 2px solid #00ffff;
     }
     .conColor1 {
-      color: red;
+      color:red;
     }
-    .conColor2 {
-      color: #000;
-      font-family: Arial, Helvetica, sans-serif;
-      margin: 5px;
-      font-weight: bold;
+        .conColor2 {
+      color: #00ffff;
+      font-family: Anita, Arial, Helvetica, sans-serif;
     }
     .iv {
       height: 52px;
@@ -360,30 +357,37 @@ export default {
       }
     }
 
+    .netBtn {
+        float: right;
+    }
+
     #connectButton {
       width: auto;
-      height: 30px;
-      color: #000000;
-      border: 1px solid #000;
+      height: 28px;
+      margin: 10px;
+      border: 1px solid #00ffff;
       border-radius: 10px;
-      background-color: #00ffff;
-      font-size: 16px;
-
+      background-color: #000;
+      font-size: 12px;
       cursor: pointer;
+      text-align: center;
+
+      
     }
 
     #connectButton:hover {
-      background-color: #00ffffb0;
+      background-color: #00ffff75;
     }
   }
 }
 .common-inline-block {
-  cursor: pointer;
+  display: inline-block;  
+  cursor: pointer; 
+
+
 }
 
-.connBtn {
-  padding: 1rem;
-  margin: auto;
-  width: 50%;
-}
+
+
+
 </style>

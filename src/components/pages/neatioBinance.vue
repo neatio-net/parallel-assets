@@ -1,7 +1,149 @@
 <template>
   <div class="main">
-    <router-link to="/claimReward"><button class="neatBtn">Deposit to BSC</button></router-link>
-    <router-link to="/claimReward"><button class="neatBtn">Withdraw from BSC</button></router-link>
+    <!-- <div class="buylogo" v-show="address == null">
+      <img src="../../assets/presale.png" alt="buy logo" class="buyimg" />
+    </div> -->
+
+    <div v-if="step == 1">
+      <Access @unlock="unlock"></Access>
+    </div>
+    <div v-if="step == 2" style="padding-bottom: 90px">
+      <div class="box1" v-show="address != null && currentChainId == '0x38'">
+        <div
+          class="bnblogo"
+          v-show="address != null && currentChainId == '0x38'"
+        >
+          <img src="../../assets/bnb.png" alt="bnb logo" class="bnbimg" />
+        </div>
+
+        <div
+          class="wallet-address"
+          v-show="address != null && currentChainId == '0x38'"
+        >
+          <div
+            class="address-title"
+            v-show="address != null && currentChainId == '0x38'"
+          >
+            <span class="noDisplay" style="color: #7192b3; font-weight: bold"
+              >Address: {{ address }}
+            </span>
+          </div>
+
+          <span class="displayIt" style="color: white">{{ shortAddress }}</span>
+
+          <div
+            class="address-title"
+            v-show="address != null && currentChainId == '0x38'"
+          >
+            <span style="color: #7192b3; font-weight: bold"></span
+            ><span style="color: white">{{ balance }}</span>
+            <span style="color: #00ffff"> BNB</span>
+          </div>
+
+          <div
+            class="address-title"
+            v-show="address != null && currentChainId == '0x38'"
+          >
+            ≈ ${{ balance * bnbprice }}
+          </div>
+        </div>
+      </div>
+
+      <div class="box0" v-show="address != null && currentChainId != '0x38'">
+        <div class="ntrk" v-show="address != null && currentChainId != '0x38'">
+          <div>Please switch to Binance Smart Chain network!</div>
+        </div>
+        <div
+          class="bnblogo"
+          v-show="address != null && currentChainId == '0x38'"
+        >
+          <img src="../../assets/bnb.png" alt="bnb logo" class="bnbimg" />
+        </div>
+
+        <div
+          class="wallet-address"
+          v-show="address != null && currentChainId == '0x38'"
+        >
+          <div
+            class="address-title"
+            v-show="address != null && currentChainId == '0x38'"
+          >
+            <span class="noDisplay" style="color: #7192b3; font-weight: bold"
+              >Address: {{ address }}
+            </span>
+          </div>
+
+          <span class="displayIt" style="color: white">{{ shortAddress }}</span>
+
+          <div
+            class="address-title"
+            v-show="address != null && currentChainId == '0x38'"
+          >
+            <span style="color: #7192b3; font-weight: bold"></span
+            ><span style="color: white">{{ balance }}</span>
+            <span style="color: #00ffff"> BNB</span>
+          </div>
+
+          <div
+            class="address-title"
+            v-show="address != null && currentChainId == '0x38'"
+          >
+            ≈ ${{ balance * bnbprice }}
+          </div>
+        </div>
+      </div>
+
+      <div class="box2" v-show="address != null && currentChainId == '0x38'">
+        <div class="info-box"></div>
+        <div class="neatrate">1 NEAT = $0.025</div>
+
+        <div class="itemNeat">
+          <p style="font-size: 14px"></p>
+          <input
+            class="inputs"
+            v-model="amountToBuy"
+            placeholder="Amount to deposit"
+            @keyup="totalUSDcalc()"
+          />
+        </div>
+        <div class="neatrate-bnb">≈ {{ totalUSD }} USD</div>
+        <div class="neatrate-bnb">≈ {{ totalBNB }} BNB</div>
+
+        <div class="btn" v-show="address != null && currentChainId == '0x38'">
+          <button id="gtButton" @click="neatBuy">{{ "Let's Buy" }}</button>
+        </div>
+      </div>
+
+      <!-- <div class="noteText2">
+        <div class="dashboard1" v-show="address == null">
+          🛈 Please double check official address:
+          <span style="color: white; font-size: 12px"
+            >0x5500067362dF77B32836FC804932765C4348B400</span
+          >
+        </div>
+      </div> -->
+
+      <div class="noteText">
+        <div
+          class="dashboard4"
+          v-show="address == null || currentChainId != '0x38'"
+        >
+          <span style="color: white">TIP:</span> To manually switch to Binance
+          Smart Chain network, click on the button "Wrong Network" found on the
+          top of the page.
+        </div>
+        <div class="dashboard4">
+          <span style="color: white">NOTE:</span> Sending anything other than
+          BNB or a compatible EVM coin/token to our address may result in the
+          loss of your coins.
+        </div>
+        <div class="dashboard4">
+          <span style="color: white">T&C:</span> By visiting and using the
+          Neatio website, you must agree with our terms and conditions listed at
+          the bottom of this page.
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -269,28 +411,28 @@ button {
   color: #00ffff;
   box-shadow: inset 0 0 0.1em #00ffff, 0 0 0.1em #00ffff;
   border: #00ffff solid 1px;
-  background-color: transparent;
+  background-color: #24292f;
   border-radius: 4px;
   outline: none;
-  margin: 120px 20px;
+  margin: 0px 0px 0px 60px;
 }
-.neatBtn {
-
-  font-size: 14px;
-  width: 360px;
-  min-height: 80px;
-	background-position: center;
-	transition: background 0.4s;
-  border: 1px solid #00ffff;
-  box-shadow: 0 0 20px #00ffff6e; 
-  }
-
-  .neatBtn:hover {
-  color: #000;  
-	text-transform: uppercase;
-	background: #00ffff radial-gradient(circle, transparent 1%, #00ffff 1%) 
-	center/15000%; 
-  }
+.info {
+  display: inline-block;
+  margin-left: 10px;
+  margin-top: 50px;
+}
+.ntrk {
+  margin: 0 auto;
+  justify-content: center;
+}
+.main {
+  padding: 10px;
+}
+.address-title {
+  margin-bottom: 5px;
+  margin-top: 10px;
+  width: auto;
+}
 .wallet-address {
   margin-bottom: 5px;
   margin-left: 48px;
