@@ -28,6 +28,7 @@ export default {
   color: #fff;
   background-color: #000000;
   position: relative;
+  border-top: #00ffff solid 1px;
 }
 .footer-box {
   width: auto;

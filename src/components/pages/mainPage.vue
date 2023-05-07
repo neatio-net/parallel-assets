@@ -1,7 +1,7 @@
 <template>
   <div class="main">
-    <router-link to="/claimReward"><button class="neatBtn">Deposit to BSC</button></router-link>
-    <router-link to="/claimReward"><button class="neatBtn">Withdraw from BSC</button></router-link>
+    <router-link to="/neatioBinance"><button class="neatBtn">Deposit to Binance Chain</button></router-link>
+    <router-link to="/binanceNeatio"><button class="neatBtn">Withdraw from Binance Chain</button></router-link>
   </div>
 </template>
 
@@ -263,7 +263,7 @@ export default {
 button {
   border: none;
   min-width: 40px;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Anita, Arial, Helvetica, sans-serif;
   text-transform: uppercase;
   cursor: pointer;
   color: #00ffff;

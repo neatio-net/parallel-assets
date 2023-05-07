@@ -158,7 +158,7 @@ export default {
   background-color: #000000;
   height: auto;
   margin: 0 auto;
-
+  border-bottom: #00ffff solid 1px;
   @media only screen and (max-width: 560px) {
   .nav-panel {
     max-width: 320px;
@@ -170,7 +170,7 @@ export default {
   .nav-panel {
     text-align: left;
     box-sizing: border-box;
-    width: 1200px;
+    width: 1100px;
     margin: 0 auto;
     .logo-neatio {
       width: 48px;
