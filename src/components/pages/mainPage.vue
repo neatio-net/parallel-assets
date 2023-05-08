@@ -1,7 +1,7 @@
 <template>
   <div class="main">
-    <router-link to="/neatioBinance"><button class="neatBtn">Deposit to Binance Chain</button></router-link>
-    <router-link to="/binanceNeatio"><button class="neatBtn">Withdraw from Binance Chain</button></router-link>
+    <router-link to="/neatBnb"><button class="neatBtn">Deposit to Binance Chain</button></router-link>
+    <router-link to="/bnbNeat"><button class="neatBtn">Withdraw from Binance Chain</button></router-link>
   </div>
 </template>
 
