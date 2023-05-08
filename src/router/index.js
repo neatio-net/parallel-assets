@@ -2,7 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 const Layout = resolve => require(['@/components/layouts/Layout'], resolve);
 const mainPage = resolve => require(['@/components/pages/mainPage'], resolve);
-
+const bnbNeat = resolve => require(['@/components/pages/bnbNeat'], resolve);
+const neatBnb = resolve => require(['@/components/pages/neatBnb'], resolve);
 Vue.use(Router)
 const router = new Router({
     mode: 'history',
