@@ -12,9 +12,19 @@ const router = new Router({
         component: Layout,
         children: [{
             path: '',
-            name: ['mainPage', 'bnbNeat', 'neatBnb',], 
-            component: [mainPage, neatBnb, bnbNeat,],
+            name: 'mainPage',
+            component: mainPage, 
             meta: []
+        },
+        {
+            path: '/neatBnb',
+            name: 'neatBnb',
+            component: neatBnb,
+        },
+        {
+            path: '/bnbNeat',
+            name: 'bnbNeat',
+            component: bnbNeat,
         },
         ]
     }]
