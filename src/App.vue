@@ -53,11 +53,7 @@ export default {
 .main {
   background-image:  url('assets/hero-bg.png');
   background-blend-mode: multiply;
-  /* background-color: #000; */
   background-size: cover;
-
-
-
 }
 
 .box0 {
