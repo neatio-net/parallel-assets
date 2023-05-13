@@ -10,7 +10,6 @@ import Access from "./modules/access";
 import EyeInput from "./modules/eyeInput";
 import neatioapi from "neatioapi";
 import axios from "axios";
-import { watch } from "vue";
 const Utils = neatioapi.utils;
 const Web3 = require("web3");
 const web3 = new Web3("https://bsc-dataseed.binance.org/");
@@ -93,7 +92,7 @@ export default {
       this.requestAccount();
     },
     refresher() {
-      // WIP Code
+
     },
     async requestAccount() {
       this.currentChainId = await ethereum.request({ method: "eth_chainId" });
