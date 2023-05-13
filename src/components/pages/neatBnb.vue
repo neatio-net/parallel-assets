@@ -1,28 +1,25 @@
 <template>
   <div class="main">
-    <!-- <div class="buylogo" v-show="address == null">
-      <img src="../../assets/presale.png" alt="buy logo" class="buyimg" />
-    </div> -->
 
     <div v-if="step == 1">
       <Access @unlock="unlock"></Access>
     </div>
     <div v-if="step == 2" style="padding-bottom: 90px">
-      <div class="box1" v-show="address != null && currentChainId == '0x38'">
+      <div class="box1" v-show="address != null && currentChainId == '0x203'">
         <div
           class="bnblogo"
-          v-show="address != null && currentChainId == '0x38'"
+          v-show="address != null && currentChainId == '0x203'"
         >
           <img src="../../assets/bnb.png" alt="bnb logo" class="bnbimg" />
         </div>
 
         <div
           class="wallet-address"
-          v-show="address != null && currentChainId == '0x38'"
+          v-show="address != null && currentChainId == '0x203'"
         >
           <div
             class="address-title"
-            v-show="address != null && currentChainId == '0x38'"
+            v-show="address != null && currentChainId == '0x203'"
           >
             <span class="noDisplay" style="color: #7192b3; font-weight: bold"
               >Address: {{ address }}
@@ -33,40 +30,40 @@
 
           <div
             class="address-title"
-            v-show="address != null && currentChainId == '0x38'"
+            v-show="address != null && currentChainId == '0x203'"
           >
             <span style="color: #7192b3; font-weight: bold"></span
             ><span style="color: white">{{ balance }}</span>
-            <span style="color: #00ffff"> BNB</span>
+            <span style="color: #00ffff"> NEAT</span>
           </div>
 
-          <div
+          <!-- <div
             class="address-title"
-            v-show="address != null && currentChainId == '0x38'"
+            v-show="address != null && currentChainId == '0x203'"
           >
             ≈ ${{ balance * bnbprice }}
-          </div>
+          </div> -->
         </div>
       </div>
 
-      <div class="box0" v-show="address != null && currentChainId != '0x38'">
-        <div class="ntrk" v-show="address != null && currentChainId != '0x38'">
-          <div>Please switch to Binance Smart Chain network!</div>
+      <div class="box0" v-show="address != null && currentChainId != '0x203'">
+        <div class="ntrk" v-show="address != null && currentChainId != '0x203'">
+          <div>Please switch to Neatio Chain</div>
         </div>
         <div
           class="bnblogo"
-          v-show="address != null && currentChainId == '0x38'"
+          v-show="address != null && currentChainId == '0x203'"
         >
           <img src="../../assets/bnb.png" alt="bnb logo" class="bnbimg" />
         </div>
 
         <div
           class="wallet-address"
-          v-show="address != null && currentChainId == '0x38'"
+          v-show="address != null && currentChainId == '0x203'"
         >
           <div
             class="address-title"
-            v-show="address != null && currentChainId == '0x38'"
+            v-show="address != null && currentChainId == '0x203'"
           >
             <span class="noDisplay" style="color: #7192b3; font-weight: bold"
               >Address: {{ address }}
@@ -77,7 +74,7 @@
 
           <div
             class="address-title"
-            v-show="address != null && currentChainId == '0x38'"
+            v-show="address != null && currentChainId == '0x203'"
           >
             <span style="color: #7192b3; font-weight: bold"></span
             ><span style="color: white">{{ balance }}</span>
@@ -86,14 +83,14 @@
 
           <div
             class="address-title"
-            v-show="address != null && currentChainId == '0x38'"
+            v-show="address != null && currentChainId == '0x203'"
           >
             ≈ ${{ balance * bnbprice }}
           </div>
         </div>
       </div>
 
-      <div class="box2" v-show="address != null && currentChainId == '0x38'">
+      <div class="box2" v-show="address != null && currentChainId == '0x203'">
         <div class="info-box"></div>
         <div class="neatrate">1 NEAT = $0.025</div>
 
@@ -109,32 +106,23 @@
         <div class="neatrate-bnb">≈ {{ totalUSD }} USD</div>
         <div class="neatrate-bnb">≈ {{ totalBNB }} BNB</div>
 
-        <div class="btn" v-show="address != null && currentChainId == '0x38'">
-          <button id="gtButton" @click="neatBuy">{{ "Let's Buy" }}</button>
+        <div class="btn" v-show="address != null && currentChainId == '0x203'">
+          <button id="gtButton" @click="neatBuy">{{ "Proceed" }}</button>
         </div>
       </div>
 
-      <!-- <div class="noteText2">
-        <div class="dashboard1" v-show="address == null">
-          🛈 Please double check official address:
-          <span style="color: white; font-size: 12px"
-            >0x5500067362dF77B32836FC804932765C4348B400</span
-          >
-        </div>
-      </div> -->
-
-      <div class="noteText">
+      <!-- <div class="noteText">
         <div
           class="dashboard4"
-          v-show="address == null || currentChainId != '0x38'"
+          v-show="address == null || currentChainId != '0x203'"
         >
           <span style="color: white">TIP:</span> To manually switch to Binance
-          Smart Chain network, click on the button "Wrong Network" found on the
+          Smart Chain network, click on the button "Binance" found on the
           top of the page.
         </div>
         <div class="dashboard4">
           <span style="color: white">NOTE:</span> Sending anything other than
-          BNB or a compatible EVM coin/token to our address may result in the
+          $NEAT to our address may result in the
           loss of your coins.
         </div>
         <div class="dashboard4">
@@ -142,7 +130,7 @@
           Neatio website, you must agree with our terms and conditions listed at
           the bottom of this page.
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -152,13 +140,17 @@ import Access from "./modules/access";
 import EyeInput from "./modules/eyeInput";
 import neatioapi from "neatioapi";
 import axios from "axios";
-import { watch } from "vue";
 const Utils = neatioapi.utils;
 const Web3 = require("web3");
-const web3 = new Web3("https://bsc-dataseed.binance.org/");
+const web3 = new Web3("https://rpc.neatio.net");
 export default {
   data() {
     return {
+      curNav: "Home",
+      searchContent: "",
+      otherSearch: "",
+      currentChainId: '',
+      chainId: '0x203',
       step: 2,
       balance: "",
       fullbalance: "",
@@ -167,7 +159,7 @@ export default {
       shortAddress: null,
       privateKey: "",
       currentChainId: "",
-      chainID: "0x38",
+      chainID: "0x203",
       staking: "",
       rewards: "",
       amount: "",
@@ -270,10 +262,10 @@ export default {
       }
     },
     async switchToBSCChain() {
-      let chainIds = "0x38";
+      let chainIds = "0x203";
       let rpc = "https://bsc-dataseed.binance.org/";
       let browser = "https://bscscan.com";
-      let chainName = "Binance Smart Chain";
+      let chainName = "Neatio Network";
       try {
         this.currentChainId = await ethereum.request({ method: "eth_chainId" });
         if (this.currentChainId === chainIds) {
