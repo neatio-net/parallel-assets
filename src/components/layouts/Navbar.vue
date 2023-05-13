@@ -17,7 +17,7 @@
           >{{ $t("NeatBridge") }}</router-link
         > 
       </div>
-      <button id="connectButton" @click=switchToNeatio class="netBtn"> <div class="conColor2" >{{address}}</div> </button>
+      <button id="connectButton" class="netBtn"> <div class="conColor2" >{{address}}</div> </button>
 
     </div>
     
@@ -83,7 +83,7 @@ export default {
           this.connectAccount();
         } else {
           
-          this.address = `☉ Neatio`
+          this.address = `Neatio Chain`
         }
 
       } catch (e) {
@@ -92,11 +92,11 @@ export default {
     },
     async connectAccount () {
       try {
-        if (this.currentChainId !== this.chainId) {
-          this.address = this.$t('wrongNetwork');
+        if (this.currentChainId === '0x203') {
+          this.address = this.$t('Neatio Chain');
+        
         }else {
-          const accounts = await ethereum.request({ method: 'eth_accounts' });
-          this.address = `${accounts[0].substr(0, 6)}...${accounts[0].slice(-4)}`;
+          this.address = this.$t('Binance Chain');
         }
       } catch (e) {
         console.log('request accounts error:', e);
