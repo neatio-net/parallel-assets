@@ -1,9 +1,5 @@
 <template>
   <div class="main">
-    <!-- <div class="buylogo" v-show="address == null">
-      <img src="../../assets/presale.png" alt="buy logo" class="buyimg" />
-    </div> -->
-
     <div v-if="step == 1">
       <Access @unlock="unlock"></Access>
     </div>
@@ -51,7 +47,7 @@
 
       <div class="box0" v-show="address != null && currentChainId != '0x38'">
         <div class="ntrk" v-show="address != null && currentChainId != '0x38'">
-          <div>Please switch to Binance Smart Chain network!</div>
+          <div>Please switch to Binance Chain</div>
         </div>
         <div
           class="bnblogo"
