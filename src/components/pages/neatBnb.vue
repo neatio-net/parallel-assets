@@ -37,12 +37,6 @@
             <span style="color: #00ffff"> NEAT</span>
           </div>
 
-          <!-- <div
-            class="address-title"
-            v-show="address != null && currentChainId == '0x203'"
-          >
-            ≈ ${{ balance * bnbprice }}
-          </div> -->
         </div>
       </div>
 
