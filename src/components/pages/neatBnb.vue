@@ -86,7 +86,6 @@
 
       <div class="box2" v-show="address != null && currentChainId == '0x203'">
         <div class="info-box"></div>
-        <div class="neatrate">1 NEAT = $0.025</div>
 
         <div class="itemNeat">
           <p style="font-size: 14px"></p>
@@ -97,7 +96,7 @@
             @keyup="totalUSDcalc()"
           />
         </div>
-        <div class="neatrate-bnb">≈ {{ totalUSD }} USD</div>
+        <div class="neatrate-bnb">≈ {{ totalUSD }} USD</div> 
         <div class="neatrate-bnb">≈ {{ totalBNB }} BNB</div>
 
         <div class="btn" v-show="address != null && currentChainId == '0x203'">
@@ -105,7 +104,7 @@
         </div>
       </div>
 
-      <!-- <div class="noteText">
+      <div class="noteText">
         <div
           class="dashboard4"
           v-show="address == null || currentChainId != '0x203'"
@@ -124,7 +123,7 @@
           Neatio website, you must agree with our terms and conditions listed at
           the bottom of this page.
         </div>
-      </div> -->
+      </div>
     </div>
   </div>
 </template>
