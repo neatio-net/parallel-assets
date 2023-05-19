@@ -91,7 +91,6 @@
 
       <div class="box2" v-show="address != null && currentChainId == '0x38'">
         <div class="info-box"></div>
-        <div class="neatrate">1 NEAT = $0.025</div>
 
         <div class="itemNeat">
           <p style="font-size: 14px"></p>
