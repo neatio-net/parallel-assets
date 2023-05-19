@@ -105,22 +105,14 @@
       </div>
 
       <div class="noteText">
-        <div
-          class="dashboard4"
-          v-show="address == null || currentChainId != '0x203'"
-        >
-          <span style="color: white">TIP:</span> To manually switch to Binance
-          Smart Chain network, click on the button "Binance" found on the
-          top of the page.
-        </div>
+
         <div class="dashboard4">
-          <span style="color: white">NOTE:</span> Sending anything other than
-          $NEAT to our address may result in the
-          loss of your coins.
+          <span style="color: white">NOTE:</span> The wrapped NEAT tokens will be available on the BSC Network after 200 confirmations on both chains. 
+          This can take up to 8h.
         </div>
         <div class="dashboard4">
           <span style="color: white">T&C:</span> By visiting and using the
-          Neatio website, you must agree with our terms and conditions listed at
+          Neatio websites, you hereby agree with our terms and conditions. Check them
           the bottom of this page.
         </div>
       </div>
