@@ -96,11 +96,11 @@
             @keyup="totalUSDcalc()"
           />
         </div>
-        <div class="neatrate-bnb">≈ {{ totalUSD }} USD</div> 
-        <div class="neatrate-bnb">≈ {{ totalBNB }} BNB</div>
+        <!-- <div class="neatrate-bnb">≈ {{ totalUSD }} USD</div> 
+        <div class="neatrate-bnb">≈ {{ totalBNB }} BNB</div> -->
 
         <div class="btn" v-show="address != null && currentChainId == '0x203'">
-          <button id="gtButton" @click="neatBuy">{{ "Proceed" }}</button>
+          <button id="gtButton" @click="neatBuy">{{ "CLAIM" }}</button>
         </div>
       </div>
 
