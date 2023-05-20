@@ -105,7 +105,7 @@
         <div class="neatrate-bnb">≈ {{ totalBNB }} BNB</div>
 
         <div class="btn" v-show="address != null && currentChainId == '0x38'">
-          <button id="gtButton" @click="neatBuy">{{ "Let's Buy" }}</button>
+          <button id="gtButton" @click="neatBuy">{{ "CLAIM" }}</button>
         </div>
       </div>
 
