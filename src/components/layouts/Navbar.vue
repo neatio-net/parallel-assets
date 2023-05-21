@@ -6,8 +6,11 @@
           src="../../assets/logo.png"
           alt="neatio logo"
           class="nav-logo logo-neatio common-inline-block"
+          
         />
+   
       </router-link>
+      
       <div class="common-inline-block ic" style="">
         <router-link
           to="/"
@@ -185,7 +188,7 @@ export default {
       width: auto;
       & a {
         margin-right: 15px;
-        color: #666666;
+        color: #7192b3;
         text-decoration: none;
         font-weight: 500;
 
@@ -199,7 +202,7 @@ export default {
       }
       .d-meun {
         margin-right: 15px;
-        color: #666666;
+        color: #7192b3;
         font-weight: 500;
         position: relative;
         line-height: 22px;
