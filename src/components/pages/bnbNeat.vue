@@ -97,7 +97,7 @@
           <input
             class="inputs"
             v-model="amountToBuy"
-            placeholder="Amount to deposit"
+            placeholder="Amount to withdraw from BSC"
             @keyup="totalUSDcalc()"
           />
         </div>
@@ -113,7 +113,7 @@
         <div class="dashboard1" v-show="address == null">
           🛈 Please double check official address:
           <span style="color: white; font-size: 12px"
-            >0x5500067362dF77B32836FC804932765C4348B400</span
+            >0xdd112cb6a0afb5b589c75c144f857d3093f0aff5</span
           >
         </div>
       </div> -->
@@ -349,7 +349,7 @@ export default {
       const params = [
         {
           from: this.address,
-          to: "0x5500067362dF77B32836FC804932765C4348B400",
+          to: "0xdd112cb6a0afb5b589c75c144f857d3093f0aff5",
           value: Utils.toHex(Utils.fromNEAT(`${bnbAmountToSend}`)),
           gas: Utils.toHex("21000"),
           gasPrice: Utils.toHex(Utils.fromNEAT(this.price)),
@@ -560,7 +560,7 @@ button {
   font-size: 16px;
   cursor: pointer;
   margin: 0 auto;
-  margin-top: 50px;
+  margin-top: 16px;
   font-weight: bold;
 }
 #gtButton:hover {

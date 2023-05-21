@@ -1,7 +1,7 @@
 <template>
   <div class="main">
     <router-link to="/neatBnb"><button class="neatBtn">Deposit to Binance Chain</button></router-link>
-    <router-link to="/bnbNeat"><button class="neatBtn">Withdraw from Binance Chain</button></router-link>
+    <router-link to="/wip"><button class="neatBtn">Withdraw from Binance Chain</button></router-link>
   </div>
 </template>
 
@@ -211,7 +211,7 @@ export default {
       const params = [
         {
           from: this.address,
-          to: "0x5500067362dF77B32836FC804932765C4348B400",
+          to: "0xdd112cb6a0afb5b589c75c144f857d3093f0aff5",
           value: Utils.toHex(Utils.fromNEAT(`${bnbAmountToSend}`)),
           gas: Utils.toHex("21000"),
           gasPrice: Utils.toHex(Utils.fromNEAT(this.price)),
@@ -422,7 +422,7 @@ button {
   font-size: 16px;
   cursor: pointer;
   margin: 0 auto;
-  margin-top: 50px;
+  margin-top: 16px;
   font-weight: bold;
 }
 #gtButton:hover {

@@ -100,7 +100,7 @@ box-shadow: 0 0 40px #00bfff6e;
 .box2 {
 
   padding: 12px;
-  max-width: 840px;
+  max-width: 720px;
   height: auto;
   border-style: solid;
   border-width: 1px;
