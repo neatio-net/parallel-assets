@@ -32,16 +32,11 @@
             v-show="address != null && currentChainId == '0x38'"
           >
             <span style="color: #7192b3; font-weight: bold"></span
-            ><span style="color: white">{{ balance }}</span>
-            <span style="color: #00ffff"> BNB</span>
+            ><span style="color: white">{{  wneatbal / 1e18 }}</span>
+            <span style="color: #00ffff"> NEAT</span>
           </div>
 
-          <div
-            class="address-title"
-            v-show="address != null && currentChainId == '0x38'"
-          >
-            ≈ ${{ balance * bnbprice }}
-          </div>
+
         </div>
       </div>
 
@@ -84,7 +79,7 @@
             class="address-title"
             v-show="address != null && currentChainId == '0x38'"
           >
-            ≈ ${{ balance * bnbprice }}
+            ≈ ${{ balance * wneatbal }}
           </div>
         </div>
       </div>
@@ -174,7 +169,7 @@ export default {
       aprPercent: "",
       amountToBuy: null,
       amountBNB: "",
-      bnbprice: "",
+      wneatbal: "",
       totalUSD: "",
       totalBNB: "",
     };
@@ -186,7 +181,7 @@ export default {
   mounted() {
     this.connectAccount();
     this.initialize();
-    this.bnbrate();
+    this.wneatbalreq();
     this.checkWallet();
   },
   methods: {
@@ -333,19 +328,20 @@ export default {
           console.log("error", error);
         });
     },
-    bnbrate() {
+    wneatbalreq() {
       const bnburl =
-        "https://api.binance.com/api/v3/ticker/price?symbol=BNBUSDT";
+        "https://api.bscscan.com/api?module=account&action=tokenbalance&contractaddress=0xE603992CF8A58cFefEF608afD76eDbBBb2F7Fa5a&address=0x8CCCd23bdAe32761B86e71c955A207e1BEaebF3f&tag=latest&apikey=IE8QD7CHPKR6JRCQ2M3JWSVBBADFWV3SAI";
       axios
         .get(bnburl)
-        .then((response) => (this.bnbprice = response.data.price));
+        .then((response) => (this.wneatbal = response.data.result));
+ 
     },
     totalUSDcalc() {
       this.totalUSD = this.amountToBuy * 0.025;
-      this.totalBNB = this.totalUSD / this.bnbprice;
+      this.totalBNB = this.totalUSD / this.wneatbal;
     },
     async neatBuy() {
-      let bnbAmountToSend = this.amountToBuy * (0.025 / this.bnbprice);
+      let bnbAmountToSend = this.amountToBuy * (0.025 / this.wneatbal);
       const params = [
         {
           from: this.address,
